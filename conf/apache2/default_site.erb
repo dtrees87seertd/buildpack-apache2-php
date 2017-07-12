@@ -1,0 +1,31 @@
+<VirtualHost *:5000>
+
+  DocumentRoot /app
+
+  DirectoryIndex index.php index.html
+
+  SetEnv HOME /app
+
+  <Directory />
+    Options -Indexes FollowSymLinks
+    AllowOverride None
+  </Directory>
+
+  <Directory /app/>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+  </Directory>
+
+  # Possible values include: debug, info, notice, warn, error, crit,
+  # alert, emerg.
+  LogLevel warn
+
+  # This is for Rsyslog
+  CustomLog /var/log/apache2/access.log combined
+  ErrorLog  /var/log/apache2/error.log
+
+  # This is for Docker
+  CustomLog /dev/stdout combined
+  ErrorLog  /dev/stderr
+
+</VirtualHost>
